@@ -11,6 +11,5 @@ export const Numbers = ({ persons, newFilter }) => {
             </li>
           ))}
       </ul>
-    </div>
-  );
+    </div>  );
 };
