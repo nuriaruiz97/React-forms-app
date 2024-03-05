@@ -1,22 +1,25 @@
-import { useState } from "react";
+import { Filter, Numbers, PersonForm } from "./components";
+import { useFormFilter, usePersons, useForm } from "./hooks";
 
 const App = () => {
-  const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
-  const [newName, setNewName] = useState("");
+  const { newName, newNumber, handleNewNameValue, handleNewNumberValue } =
+    useForm();
+  const { newFilter, handleNewFilterValue } = useFormFilter();
+  const { persons, handleChangePersonsValue } = usePersons();
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
-        <div>
-          name: <input />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-      ...
+      <Filter setNewFilter={handleNewFilterValue} />
+      <PersonForm
+        newName={newName}
+        setNewName={handleNewNameValue}
+        newNumber={newNumber}
+        handleNewNumber={handleNewNumberValue}
+        persons={persons}
+        setPersons={handleChangePersonsValue}
+      />
+      <Numbers newFilter={newFilter} persons={persons} />
     </div>
   );
 };
